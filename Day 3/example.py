@@ -1,3 +1,6 @@
+# taken from https://github.com/jonathanpaulson/AdventOfCode/, used for debugging help
+
+
 import sys
 import re
 from collections import defaultdict
