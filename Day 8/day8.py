@@ -46,24 +46,21 @@ while True:
     paths[origin[0]][origin[1]][origin[2]] = [destinationL, destinationR]
     
 max_left_or_right = len(directions)
-# print(max_left_or_right)
 
-
-# print(current_locs)
 #using lcm method
 shortest_to_z = [0 for x in range(len(current_locs))]
 print(paths[0][0][1])
 for i, loc in enumerate(current_locs):
     temp_loc = loc
-    # print("outer:",temp_loc)
+
     total_steps = 0
     left_or_right = 0
     test = 0
     while True:
-        # print("inner",temp_loc)
+
         #check if got to Z
         if temp_loc[2] == 25:
-            # print("breakING")
+
             shortest_to_z[i] = total_steps
             break
 
@@ -81,70 +78,12 @@ for i, loc in enumerate(current_locs):
 
         left_or_right += 1
         total_steps += 1
-        # test += 1
-        # if test > 10:
-        #     break
-    # print(total_steps)
-    # test_count+= 1
-    
-    # if test_count == 9:
-    #     break
-
-# print(paths[0][0][0])
-
-# print(shortest_to_z)
 
 lcm = 1
 for i in shortest_to_z:
     print(i)
     lcm = lcm * i // gcd(lcm, i)
 print(lcm)
-
-#old
-# print(current_locs)
-# test_count = 0
-# while True:
-#     #check if all locs at ZZZ
-#     done = True
-#     for loc in current_locs:
-#         # print(loc[2])
-#         if not (loc[2] == 25):
-#             done = False
-#             break
-
-#     if done:
-#         # print("all done")
-#         break
-
-#     # check if need to reset index
-#     if left_or_right == max_left_or_right:
-#         left_or_right = 0
-    
-#     # if not at ZZZ go to direction and go either left or right for all locs
-#     for i, loc in enumerate(current_locs):
-#         if directions[left_or_right] == "L":
-#             current_locs[i] = paths[loc[0]][loc[1]][loc[2]][0]
-#         else:
-#             current_locs[i] = paths[loc[0]][loc[1]][loc[2]][1]
-
-#     # print(current_locs)
-
-#     # print("new_loc", current_loc)
-    
-
-#     left_or_right += 1
-#     total_steps += 1
-#     # print(total_steps)
-#     # test_count+= 1
-    
-#     # if test_count == 9:
-#     #     break
-
-# # print(paths[0][0][0])
-
-# print(total_steps)
-
-
 
 # #part 1
 # # first all 3 letter combinations, then populate with directions.
