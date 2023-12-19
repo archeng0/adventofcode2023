@@ -159,89 +159,105 @@ while not (curr_x == x_s) or not (curr_y == y_s):
     curr_y += ret[1]
     coming_from = ret[2]
 
-map[y_s][x_s].inside_direction = "r"
-
-# loop over everything again, set inside direction
-curr_x = x_s
-curr_y = y_s + 1
-coming_from = "u"  # u = up, l = left, r = right, d = down
-inside_dir = "r"
-while not (curr_x == x_s) or not (curr_y == y_s):
-    direction = map[curr_y][curr_x].char
-
-    # print("at", curr_x, curr_y)
-    # print("direction", inside_dir)
-    inside_dir = change_dir(direction, inside_dir)
-    # print("new direction", inside_dir)
-    map[curr_y][curr_x].inside_direction = inside_dir
-
-    # print(direction)
-    ret = travel(direction, coming_from)
-    curr_x += ret[0]
-    curr_y += ret[1]
-    coming_from = ret[2]
-
-# then loop and count
-curr_x = x_s
-curr_y = y_s + 1
-test_x = x_s+1
-test_y = y_s
 count = 0
-while not (curr_x == x_s) or not (curr_y == y_s):
-    loc = map[curr_y][curr_x]
-    direction = loc.char
-    inside_dir = loc.inside_direction
+for y in range(height):
+    parity = 0
+    for x in range(width): 
+        char = map[y][x].char
+        if char in "|JLS":
+            parity += 1
+        
+        # print(parity)
+        if (parity % 2):
+            if not map[y][x].on_path:
+                count += 1
+        # print(map[y][x].char,end="")
+    # print()
+
+print(count)
+# map[y_s][x_s].inside_direction = "r"
+
+# # loop over everything again, set inside direction
+# curr_x = x_s
+# curr_y = y_s + 1
+# coming_from = "u"  # u = up, l = left, r = right, d = down
+# inside_dir = "r"
+# while not (curr_x == x_s) or not (curr_y == y_s):
+#     direction = map[curr_y][curr_x].char
+
+#     # print("at", curr_x, curr_y)
+#     # print("direction", inside_dir)
+#     inside_dir = change_dir(direction, inside_dir)
+#     # print("new direction", inside_dir)
+#     map[curr_y][curr_x].inside_direction = inside_dir
+
+#     # print(direction)
+#     ret = travel(direction, coming_from)
+#     curr_x += ret[0]
+#     curr_y += ret[1]
+#     coming_from = ret[2]
+
+# # then loop and count
+# curr_x = x_s
+# curr_y = y_s + 1
+# test_x = x_s+1
+# test_y = y_s
+# count = 0
+# while not (curr_x == x_s) or not (curr_y == y_s):
+#     loc = map[curr_y][curr_x]
+#     direction = loc.char
+#     inside_dir = loc.inside_direction
 
     
-    if inside_dir == "r":
-        for i in range(curr_x+1, width):
-            new_loc = map[curr_y][i]
-            if new_loc.on_path:
-                break
+#     if inside_dir == "r":
+#         for i in range(curr_x+1, width):
+#             new_loc = map[curr_y][i]
+#             if new_loc.on_path:
+#                 break
             
-            if new_loc.counted:
-                pass
-            else:
-                new_loc.counted = True
-                count += 1
-    elif inside_dir == "l":
-        for i in range(curr_x-1, -1, -1):
-            new_loc = map[curr_y][i]
-            if new_loc.on_path:
-                break
+#             if new_loc.counted:
+#                 pass
+#             else:
+#                 new_loc.counted = True
+#                 count += 1
+#     elif inside_dir == "l":
+#         for i in range(curr_x-1, -1, -1):
+#             new_loc = map[curr_y][i]
+#             if new_loc.on_path:
+#                 break
             
-            if new_loc.counted:
-                pass
-            else:
-                new_loc.counted = True
-                count += 1
-    elif inside_dir == "d":
-        for i in range(curr_y+1, height):
-            new_loc = map[i][curr_x]
-            if new_loc.on_path:
-                break
+#             if new_loc.counted:
+#                 pass
+#             else:
+#                 new_loc.counted = True
+#                 count += 1
+#     elif inside_dir == "d":
+#         for i in range(curr_y+1, height):
+#             new_loc = map[i][curr_x]
+#             if new_loc.on_path:
+#                 break
             
-            if new_loc.counted:
-                pass
-            else:
-                new_loc.counted = True
-                count += 1
-    elif inside_dir == "u":
-        for i in range(curr_y-1, -1, -1):
-            new_loc = map[i][curr_x]
-            if new_loc.on_path:
-                break
+#             if new_loc.counted:
+#                 pass
+#             else:
+#                 new_loc.counted = True
+#                 count += 1
+#     elif inside_dir == "u":
+#         for i in range(curr_y-1, -1, -1):
+#             new_loc = map[i][curr_x]
+#             if new_loc.on_path:
+#                 break
             
-            if new_loc.counted:
-                pass
-            else:
-                new_loc.counted = True
-                count += 1
+#             if new_loc.counted:
+#                 pass
+#             else:
+#                 new_loc.counted = True
+#                 count += 1
 
-    ret = travel(direction, coming_from)
-    curr_x += ret[0]
-    curr_y += ret[1]
-    coming_from = ret[2]
+#     ret = travel(direction, coming_from)
+#     curr_x += ret[0]
+#     curr_y += ret[1]
+#     coming_from = ret[2]
 
 
 # print()
@@ -250,10 +266,10 @@ while not (curr_x == x_s) or not (curr_y == y_s):
 #         if map[y][x].on_path:
 #             print(map[y][x].char,end="")
 #         else:
-#             print(" ",end="")
-#     print()
-print(map[test_y][test_x])
-print(count)
+# #             print(" ",end="")
+# #     print()
+# print(map[test_y][test_x])
+# print(count)
 
 
 # part 1
